@@ -75,9 +75,11 @@ Exᴀᴍᴩʟᴇ: <code> /set_caption 📕 Fɪʟᴇ Nᴀᴍᴇ: {filename}
     SEND_METADATA = """
 ❪ SET CUSTOM METADATA ❫
 
-☞ Fᴏʀ Exᴀᴍᴘʟᴇ:
+☞ Fᴏʀ Exᴀᴍᴘʟᴇ:-
 
-◦ <code>Telegram : @TGCinemaworld</code>
+<code>◦  -map 0 -c:s copy -c:a copy -c:v copy -metadata title="Powered By:- @TGCinemaworld" -metadata author="@TGCinemaworld" -metadata:s:s title="Subtitled By :- @TGCinemaworld" -metadata:s:a title="By :- @TGCinemaworld" -metadata:s:v title="By:- @TGCinemaworld" 
+
+📥 Fᴏʀ Hᴇʟᴘ Cᴏɴᴛ. @TGCinemaworld</code>
 """
 
     PROGRESS_BAR = """<b>\n
