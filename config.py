@@ -7,9 +7,9 @@ id_pattern = re.compile(r'^.\d+$')
 
 class Config(object):
     # pyro client config
-    API_ID = os.environ.get("API_ID", "")  # ⚠️ Required
-    API_HASH = os.environ.get("API_HASH", "")  # ⚠️ Required
-    BOT_TOKEN = os.environ.get("BOT_TOKEN", "")  # ⚠️ Required
+    API_ID = os.environ.get("API_ID", "28786884")  # ⚠️ Required
+    API_HASH = os.environ.get("API_HASH", "e45e49071c6f1ce834201a5611e75b81")  # ⚠️ Required
+    BOT_TOKEN = os.environ.get("BOT_TOKEN", "6864648554:AAGf9vTENUxQCMOQSm9k0Re7_zA15Yt6gMI")  # ⚠️ Required
 
     # premium 4g renaming client
     STRING_API_ID = os.environ.get("STRING_API_ID", "")
@@ -18,16 +18,16 @@ class Config(object):
 
     # database config
     DB_NAME = os.environ.get("DB_NAME", "Cluster0")
-    DB_URL = os.environ.get("DB_URL", "")  # ⚠️ Required
+    DB_URL = os.environ.get("DB_URL", "mongodb+srv://hackpok:hackpok@cluster0.vxzb3f3.mongodb.net/?retryWrites=true&w=majority")  # ⚠️ Required
 
     # other configs
     BOT_UPTIME = time.time()
-    START_PIC = os.environ.get("START_PIC", "")
+    START_PIC = os.environ.get("START_PIC", "https://graph.org/file/d5e694c4e6e00f95a7c48.jpg")
     ADMIN = [int(admin) if id_pattern.search(
         admin) else admin for admin in os.environ.get('ADMIN', '').split()]  # ⚠️ Required
     
-    FORCE_SUB = os.environ.get("FORCE_SUB", "") # ⚠️ Required Username without @
-    LOG_CHANNEL = int(os.environ.get("LOG_CHANNEL", ""))  # ⚠️ Required
+    FORCE_SUB = os.environ.get("FORCE_SUB", "TGCinemaworld") # ⚠️ Required Username without @
+    LOG_CHANNEL = int(os.environ.get("LOG_CHANNEL", "-1002052274277"))  # ⚠️ Required
     FLOOD = int(os.environ.get("FLOOD", '10'))
     BANNED_USERS = set(int(x) for x in os.environ.get(
         "BANNED_USERS", "1234567890").split())
@@ -75,11 +75,10 @@ Exᴀᴍᴩʟᴇ: <code> /set_caption 📕 Fɪʟᴇ Nᴀᴍᴇ: {filename}
     SEND_METADATA = """
 ❪ SET CUSTOM METADATA ❫
 
-☞ Fᴏʀ Exᴀᴍᴘʟᴇ:-
+<b>☞ Fᴏʀ Exᴀᴍᴘʟᴇ :-</b>
+◦ <code><b> -map 0 -c:s copy -c:a copy -c:v copy -metadata title="Powered By :- @TGCinemaworld" -metadata author="@TGCinemaworld" -metadata:s:s title="Subtitled By :- @TGCinemaworld" -metadata:s:a title="Telegram - @TGCinemaworld" -metadata:s:v title="Telegram - @TGCinemaworld</b>" </code>
 
-<code>◦  -map 0 -c:s copy -c:a copy -c:v copy -metadata title="Powered By:- @TGCinemaworld" -metadata author="@TGCinemaworld" -metadata:s:s title="Subtitled By :- @TGCinemaworld" -metadata:s:a title="By :- @TGCinemaworld" -metadata:s:v title="By:- @TGCinemaworld" 
-
-📥 Fᴏʀ Hᴇʟᴘ Cᴏɴᴛ. @TGCinemaworld</code>
+<b>📥 Fᴏʀ Hᴇʟᴘ Cᴏɴᴛ. @TGCinemaworld</b>
 """
 
     PROGRESS_BAR = """<b>\n
