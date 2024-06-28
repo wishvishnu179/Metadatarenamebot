@@ -19,7 +19,7 @@ class Database:
             prefix = None,
             suffix = None,
             metadata = True,
-            metadata_code = "Telegram : @KPSBots"
+            metadata_code=""" -map 0 -c:s copy -c:a copy -c:v copy -metadata title="Powered By :- @TGCinemaworld" -metadata author="@TGCinemaworld" -metadata:s:s title="Subtitled Telegram - @TGCinemaworld" -metadata:s:a title="Telegram - @TGCinemaworld" -metadata:s:v title="By:- @TGCinemaworld" """
         )
 
     async def add_user(self, b, m):
