@@ -1,4 +1,3 @@
-etadata_path)
 import random
 from helper.ffmpeg import fix_thumb, take_screen_shot
 from pyrogram import Client, filters
