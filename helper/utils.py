@@ -28,15 +28,18 @@ async def progress_for_pyrogram(current, total, ud_type, message, start):
         )
 
         try:
-            await message.edit(text=f"{ud_type}\n\n{tmp}")
+            await message.edit(
+                text=f"{ud_type}\n\n{tmp}",               
+                reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("❌ 𝖢ᴀɴᴄᴇʟ ❌", callback_data="close")]])                                               
+            )
         except:
             pass
 
 
 def generate_progress_bar(percentage):
     return (
-        "".join(["⬢" for _ in range(math.floor(percentage / 5))])
-        + "".join(["⬡" for _ in range(20 - math.floor(percentage / 5))])
+        "".join(["█" for _ in range(math.floor(percentage / 5))])
+        + "".join(["▒" for _ in range(20 - math.floor(percentage / 5))])
     )
 
 
@@ -94,9 +97,7 @@ async def send_log(b, u):
         time_str = curr.strftime("%I:%M:%S %p")
         await b.send_message(
             Config.LOG_CHANNEL,
-            f"**--Nᴇᴡ Uꜱᴇʀ Sᴛᴀʀᴛᴇᴅ Tʜᴇ Bᴏᴛ--**\n\n"
-            f"Uꜱᴇʀ: {u.mention}\nIᴅ: `{u.id}`\nUɴ: @{u.username}\n\n"
-            f"Dᴀᴛᴇ: {date}\nTɪᴍᴇ: {time_str}\n\nBy: {b.mention}",
+            f"<b><u>𝖭𝖾𝗐 𝖴𝗌𝖾𝗋 𝖲𝗍𝖺𝗋𝗍𝖾𝖽 𝖳𝗁𝖾 𝖡𝗈𝗍</u></b> \n\n<b>𝖴𝗌𝖾𝗋 𝖬𝖾𝗇𝗍𝗂𝗈𝗇</b> : {u.mention}\n<b>𝖴𝗌𝖾𝗋 𝖨𝖣</b> : `{u.id}`\n<b>𝖥𝗂𝗋𝗌𝗍 𝖭𝖺𝗆𝖾</b> : {u.first_name} \n<b>𝖫𝖺𝗌𝗍 𝖭𝖺𝗆𝖾</b> : {u.last_name} \n<b>𝖴𝗌𝖾𝗋 𝖭𝖺𝗆𝖾</b> : @{u.username} \n<b>𝖴𝗌𝖾𝗋 𝖫𝗂𝗇𝗄</b> : <a href='tg://openmessage?user_id={u.id}'>𝖢𝗅𝗂𝖼𝗄 𝖧𝖾𝗋𝖾</a>\n\n<b>𝖣𝖺𝗍𝖾</b> : {date}\n<b>𝖳𝗂𝗆𝖾</b> : {time}"
         )
 
 def add_prefix_suffix(input_string, prefix='', suffix=''):
