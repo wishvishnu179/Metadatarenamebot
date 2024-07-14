@@ -11,18 +11,18 @@ from time import sleep
 async def start(client, message):
 
     if message.from_user.id in Config.BANNED_USERS:
-        await message.reply_text("Sorry, You are banned.")
+        await message.reply_text("**Sᴏʀʀʏ, Yᴏᴜ Aʀᴇ Bᴀɴɴᴇᴅ 🚫.**")
         return
 
     user = message.from_user
     await db.add_user(client, message)
-    button = InlineKeyboardMarkup([[
-        InlineKeyboardButton(
-            '⛅ ᴜᴘᴅᴀᴛᴇs', url='https://t.me/TGCinemaworld')
-    ], [
-        InlineKeyboardButton('❄️ ᴀʙᴏᴜᴛ', callback_data='about'),
-        InlineKeyboardButton('❗ ʜᴇʟᴘ', callback_data='help')
-    ]])
+    button = InlineKeyboardMarkup([
+                [InlineKeyboardButton('♨️ Mᴀɪɴ Cʜᴀɴɴᴇʟ', url='https://t.me/TGCinemaworld'),
+                InlineKeyboardButton('🔍 Mᴏᴠɪᴇs Bᴏᴛ', url='https://t.me/TGCinemaworldbot/start')],
+                [InlineKeyboardButton('✌️ Aʙᴏᴜᴛ', callback_data='about'),
+                InlineKeyboardButton('🛠️ Hᴇʟᴘ', callback_data='help')],
+                [InlineKeyboardButton("👨‍💻 Dᴇᴠᴇʟᴏᴘᴇʀ", url='https://t.me/Vishnudhfm14')]
+            ])
     if Config.START_PIC:
         await message.reply_photo(Config.START_PIC, caption=Txt.START_TXT.format(user.mention), reply_markup=button)
     else:
@@ -37,18 +37,18 @@ async def rename_start(client, message):
 
     if not Config.STRING_SESSION:
         if file.file_size > 2000 * 1024 * 1024:
-            return await message.reply_text("Sᴏʀʀy Bʀᴏ Tʜɪꜱ Bᴏᴛ Iꜱ Dᴏᴇꜱɴ'ᴛ Sᴜᴩᴩᴏʀᴛ Uᴩʟᴏᴀᴅɪɴɢ Fɪʟᴇꜱ Bɪɢɢᴇʀ Tʜᴀɴ 2Gʙ")
+            return await message.reply_text("**Sᴏʀʀy Bʀᴏ Tʜɪꜱ Bᴏᴛ Dᴏᴇꜱɴ'ᴛ Sᴜᴩᴩᴏʀᴛ Uᴩʟᴏᴀᴅɪɴɢ Fɪʟᴇꜱ Bɪɢɢᴇʀ Tʜᴀɴ 2Gʙ**")
 
     try:
-        text = f"""**__ᴡʜᴀᴛ ᴅᴏ ʏᴏᴜ ᴡᴀɴᴛ ᴍᴇ ᴛᴏ ᴅᴏ ᴡɪᴛʜ ᴛʜɪs ғɪʟᴇ.?__**\n\n**ғɪʟᴇ ɴᴀᴍᴇ** : `{filename}`\n\n**ғɪʟᴇ sɪᴢᴇ** : `{filesize}`"""
-        buttons = [[InlineKeyboardButton("📝 sᴛᴀʀᴛ ʀᴇɴᴀᴍᴇ 📝", callback_data="rename")],
-                   [InlineKeyboardButton("✖️ ᴄᴀɴᴄᴇʟ ✖️", callback_data="close")]]
+        text = f"""**__Wʜᴀᴛ Dᴏ Yᴏᴜ Wᴀɴᴛ Mᴇ Tᴏ Dᴏ Wɪᴛʜ Tʜɪs Fɪʟᴇ.?__**\n\n**Fɪʟᴇ Nᴀᴍᴇ** :- `{filename}`\n\n**Fɪʟᴇ Sɪᴢᴇ** :- `{filesize}`"""
+        buttons = [[InlineKeyboardButton("📝 Sᴛᴀʀᴛ Rᴇɴᴀᴍᴇ 📝", callback_data="rename")],
+                   [InlineKeyboardButton("🚫 Cᴀɴᴄᴇʟ 🚫", callback_data="close")]]
         await message.reply_text(text=text, reply_to_message_id=message.id, reply_markup=InlineKeyboardMarkup(buttons))
     except FloodWait as e:
         await sleep(e.value)
-        text = f"""**__What do you want me to do with this file.?__**\n\n**File Name** : `{filename}`\n\n**File Size** : `{filesize}`"""
-        buttons = [[InlineKeyboardButton("📝 sᴛᴀʀᴛ ʀᴇɴᴀᴍᴇ 📝", callback_data="rename")],
-                   [InlineKeyboardButton("✖️ ᴄᴀɴᴄᴇʟ ✖️", callback_data="close")]]
+        text = f"""**__Wʜᴀᴛ Dᴏ Yᴏᴜ Wᴀɴᴛ Mᴇ Tᴏ Dᴏ Wɪᴛʜ Tʜɪs Fɪʟᴇ.?__**\n\n**Fɪʟᴇ Nᴀᴍᴇ** :- `{filename}`\n\n**Fɪʟᴇ Sɪᴢᴇ** :- `{filesize}`"""
+        buttons = [[InlineKeyboardButton("📝 Sᴛᴀʀᴛ Rᴇɴᴀᴍᴇ 📝", callback_data="rename")],
+                   [InlineKeyboardButton("🚫 Cᴀɴᴄᴇʟ 🚫", callback_data="close")]]
         await message.reply_text(text=text, reply_to_message_id=message.id, reply_markup=InlineKeyboardMarkup(buttons))
     except:
         pass
@@ -61,21 +61,21 @@ async def cb_handler(client, query: CallbackQuery):
         await query.message.edit_text(
             text=Txt.START_TXT.format(query.from_user.mention),
             disable_web_page_preview=True,
-            reply_markup=InlineKeyboardMarkup([[
-                InlineKeyboardButton(
-                    '⛅ Uᴩᴅᴀᴛᴇꜱ', url='https://t.me/TGCinemaworld')
-            ], [
-                InlineKeyboardButton('❄️ ᴀʙᴏᴜᴛ', callback_data='about'),
-                InlineKeyboardButton('❗ ʜᴇʟᴘ', callback_data='help')
-            ]])
+            reply_markup=InlineKeyboardMarkup([
+                [InlineKeyboardButton('♨️ Mᴀɪɴ Cʜᴀɴɴᴇʟ', url='https://t.me/TGCinemaworld'),
+                InlineKeyboardButton('🔍 Mᴏᴠɪᴇs Bᴏᴛ', url='https://t.me/TGCinemaworldbot/start')],
+                [InlineKeyboardButton('✌️ Aʙᴏᴜᴛ', callback_data='about'),
+                InlineKeyboardButton('🛠️ Hᴇʟᴘ', callback_data='help')],
+                [InlineKeyboardButton("👨‍💻 Dᴇᴠᴇʟᴏᴘᴇʀ", url='https://t.me/Vishnudhfm14')]
+            ])
         )
     elif data == "help":
         await query.message.edit_text(
             text=Txt.HELP_TXT,
             disable_web_page_preview=True,
             reply_markup=InlineKeyboardMarkup([[
-                InlineKeyboardButton("✘ ᴄʟᴏsᴇ", callback_data="close"),
-                InlineKeyboardButton("⟪ ʙᴀᴄᴋ", callback_data="start")
+                InlineKeyboardButton("🚫 Cʟᴏꜱᴇ", callback_data="close"),
+                InlineKeyboardButton("⬅️ Bᴀᴄᴋ", callback_data="start")
             ]])
         )
     elif data == "about":
@@ -83,8 +83,8 @@ async def cb_handler(client, query: CallbackQuery):
             text=Txt.ABOUT_TXT.format(client.mention),
             disable_web_page_preview=True,
             reply_markup=InlineKeyboardMarkup([[
-                InlineKeyboardButton("✘ ᴄʟᴏsᴇ", callback_data="close"),
-                InlineKeyboardButton("⟪ ʙᴀᴄᴋ", callback_data="start")
+                InlineKeyboardButton("🚫 Cʟᴏꜱᴇ", callback_data="close"),
+                InlineKeyboardButton("⬅️ Bᴀᴄᴋ", callback_data="start")
             ]])
         )
 
