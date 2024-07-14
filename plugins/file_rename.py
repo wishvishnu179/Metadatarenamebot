@@ -1,3 +1,4 @@
+etadata_path)
 import random
 from helper.ffmpeg import fix_thumb, take_screen_shot
 from pyrogram import Client, filters
@@ -24,7 +25,7 @@ app = Client("test", api_id=Config.STRING_API_ID,
 @Client.on_callback_query(filters.regex('rename'))
 async def rename(bot, update):
     await update.message.delete()
-    await update.message.reply_text("__ᴘʟᴇᴀsᴇ ᴇɴᴛᴇʀ ɴᴇᴡ ғɪʟᴇ ɴᴀᴍᴇ..__",
+    await update.message.reply_text("__Pʟᴇᴀsᴇ Eɴᴛᴇʀ Nᴇᴡ FɪʟᴇNᴀᴍᴇ...__",
                                     reply_to_message_id=update.message.reply_to_message.id,
                                     reply_markup=ForceReply(True))
 
@@ -62,7 +63,7 @@ async def refunc(client, message):
 
         # Use a single call to reply with both text and inline keyboard
         await message.reply(
-            text=f"**Sᴇʟᴇᴄᴛ Tʜᴇ Oᴜᴛᴩᴜᴛ Fɪʟᴇ Tyᴩᴇ**\n**• Fɪʟᴇ Nᴀᴍᴇ :**  `{new_name}`",
+            text=f"**Sᴇʟᴇᴄᴛ Tʜᴇ OᴜᴛPᴜᴛ Fɪʟᴇ Tyᴩᴇ**\n**• Fɪʟᴇ Nᴀᴍᴇ :-**  `{new_name}`",
             reply_to_message_id=file.id,
             reply_markup=InlineKeyboardMarkup(button)
         )
@@ -81,21 +82,21 @@ async def doc(bot, update):
     prefix = await db.get_prefix(update.message.chat.id)
     suffix = await db.get_suffix(update.message.chat.id)
     new_name = update.message.text
-    new_filename_ = new_name.split(":")[1]
+    new_filename_ = new_name.split(":-")[1]
 
     try:
         # adding prefix and suffix
         new_filename = add_prefix_suffix(new_filename_, prefix, suffix)
 
     except Exception as e:
-        return await update.message.edit(f"⚠️ Something went wrong can't able to set Prefix or Suffix ☹️\nError: {e}")
+        return await update.message.edit(f"**⚠️ Sᴏᴍᴇᴛʜɪɴɢ Wᴇɴᴛ Wʀᴏɴɢ Cᴀɴ'ᴛ Aʙʟᴇ Tᴏ Sᴇᴛ Pʀᴇғɪx Oʀ Sᴜғғɪx ☹️ \n\n📞 Cᴏɴᴛᴀᴄᴛ Mʏ Cʀᴇᴀᴛᴏʀ -> @Vishnudhfm14\nEʀʀᴏʀ: {e}**")
 
     file_path = f"downloads/{new_filename}"
     file = update.message.reply_to_message
 
-    ms = await update.message.edit("Tʀyɪɴɢ Tᴏ Dᴏᴡɴʟᴏᴀᴅɪɴɢ")
+    ms = await update.message.edit("⚠️ __**Pʟᴇᴀsᴇ Wᴀɪᴛ...**__\n\n**Tʀyɪɴɢ Tᴏ Dᴏᴡɴʟᴏᴀᴅɪɴɢ....**")
     try:
-        path = await bot.download_media(message=file, file_name=file_path, progress=progress_for_pyrogram, progress_args=("\n⚠️ __**Please wait...**__\n\n❄️ **Dᴏᴡɴʟᴏᴀᴅ Sᴛᴀʀᴛᴇᴅ....**", ms, time.time()))
+        path = await bot.download_media(message=file, file_name=file_path, progress=progress_for_pyrogram, progress_args=("\n⚠️ __**Pʟᴇᴀsᴇ Wᴀɪᴛ...**__\n\n❄️ **Dᴏᴡɴʟᴏᴀᴅ Sᴛᴀʀᴛᴇᴅ....**", ms, time.time()))
     except Exception as e:
         return await ms.edit(e)
 
@@ -106,8 +107,8 @@ async def doc(bot, update):
         metadata = await db.get_metadata_code(update.message.chat.id)
         if metadata:
 
-            await ms.edit("I Fᴏᴜɴᴅ Yᴏᴜʀ Mᴇᴛᴀᴅᴀᴛᴀ\n\n__**Aᴅᴅɪɴɢ Mᴇᴛᴀᴅᴀᴛᴀ Tᴏ Fɪʟᴇ....**")
-            cmd = f"""ffmpeg -i "{path}"  -map 0 -c:s copy -c:a copy -c:v copy -metadata title="{metadata}" -metadata author="{metadata}" -metadata:s:s title="{metadata}" -metadata:s:a title="{metadata}" -metadata:s:v title="{metadata}"  "{metadata_path}" """
+            await ms.edit("**I Fᴏᴜɴᴅ Yᴏᴜʀ MᴇᴛᴀDᴀᴛᴀ\n\n__**Pʟᴇᴀsᴇ Wᴀɪᴛ...**__\n**Aᴅᴅɪɴɢ Mᴇᴛᴀᴅᴀᴛᴀ Tᴏ Fɪʟᴇ....**")
+            cmd = f"""ffmpeg -i "{path}" {metadata} "{metadata_path}" """
 
             process = await asyncio.create_subprocess_shell(
                 cmd, stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.PIPE
@@ -118,12 +119,12 @@ async def doc(bot, update):
 
             try:
                 if er:
-                    return await ms.edit(str(er) + "\n\n**Error**")
+                    return await ms.edit(str(er) + "\n\n**Eʀʀᴏʀ**")
             except BaseException:
                 pass
-        await ms.edit("**Metadata added to the file successfully ✅**\n\n⚠️ __**Tʀyɪɴɢ Tᴏ Uᴩʟᴏᴀᴅɪɴɢ....**")
+        await ms.edit("**Mᴇᴛᴀᴅᴀᴛᴀ Aᴅᴅᴇᴅ Tᴏ Tʜᴇ Fɪʟᴇ Sᴜᴄᴄᴇssғᴜʟʟʏ ✅**\n\n⚠️ __**Pʟᴇᴀsᴇ Wᴀɪᴛ...**__\n\n**Tʀyɪɴɢ Tᴏ Uᴩʟᴏᴀᴅɪɴɢ....**")
     else:
-        await ms.edit("⚠️  __**Please wait...**__\n\n\n**Tʀyɪɴɢ Tᴏ Uᴩʟᴏᴀᴅɪɴɢ....**")
+        await ms.edit("⚠️  __**Pʟᴇᴀsᴇ Wᴀɪᴛ...**__\n\n\n**Tʀyɪɴɢ Tᴏ Uᴩʟᴏᴀᴅɪɴɢ....**")
 
     duration = 0
     try:
@@ -173,7 +174,7 @@ async def doc(bot, update):
                     thumb=ph_path,
                     caption=caption,
                     progress=progress_for_pyrogram,
-                    progress_args=("⚠️ __**Please wait...**__\n\n🌨️ **Uᴩʟᴏᴅ Sᴛᴀʀᴛᴇᴅ....**", ms, time.time()))
+                    progress_args=("⚠️ __**Pʟᴇᴀsᴇ Wᴀɪᴛ...**__\n\n**Uᴩʟᴏᴅ Sᴛᴀʀᴛᴇᴅ....**", ms, time.time()))
 
                 from_chat = filw.chat.id
                 mg_id = filw.id
@@ -192,7 +193,7 @@ async def doc(bot, update):
                     height=height,
                     duration=duration,
                     progress=progress_for_pyrogram,
-                    progress_args=("⚠️ __**Uᴩʟᴏᴅ Sᴛᴀʀᴛᴇᴅ....**", ms, time.time()))
+                    progress_args=("⚠️ __**Pʟᴇᴀsᴇ Wᴀɪᴛ...**__\n\n**Uᴩʟᴏᴅ Sᴛᴀʀᴛᴇᴅ....**", ms, time.time()))
 
                 from_chat = filw.chat.id
                 mg_id = filw.id
@@ -208,7 +209,7 @@ async def doc(bot, update):
                     thumb=ph_path,
                     duration=duration,
                     progress=progress_for_pyrogram,
-                    progress_args=("⚠️ __**Please wait...**__\n\n🌨️ **Uᴩʟᴏᴅ Sᴛᴀʀᴛᴇᴅ....**", ms, time.time()))
+                    progress_args=("⚠️ __**Pʟᴇᴀsᴇ Wᴀɪᴛ...**__\n\n**Uᴩʟᴏᴅ Sᴛᴀʀᴛᴇᴅ....**", ms, time.time()))
 
                 from_chat = filw.chat.id
                 mg_id = filw.id
@@ -237,7 +238,7 @@ async def doc(bot, update):
                     thumb=ph_path,
                     caption=caption,
                     progress=progress_for_pyrogram,
-                    progress_args=("⚠️ __**Please wait...**__\n\n🌨️ **Uᴩʟᴏᴅ Sᴛᴀʀᴛᴇᴅ....**", ms, time.time()))
+                    progress_args=("⚠️ __**Pʟᴇᴀsᴇ Wᴀɪᴛ...**__\n\n**Uᴩʟᴏᴅ Sᴛᴀʀᴛᴇᴅ....**", ms, time.time()))
             elif type == "video":
                 await bot.send_video(
                     update.message.chat.id,
@@ -248,7 +249,7 @@ async def doc(bot, update):
                     height=height,
                     duration=duration,
                     progress=progress_for_pyrogram,
-                    progress_args=("⚠️ __**Please wait...**__\n\n🌨️ **Uᴩʟᴏᴅ Sᴛᴀʀᴛᴇᴅ....**", ms, time.time()))
+                    progress_args=("⚠️ __**Pʟᴇᴀsᴇ Wᴀɪᴛ...**__\n\n**Uᴩʟᴏᴅ Sᴛᴀʀᴛᴇᴅ....**", ms, time.time()))
             elif type == "audio":
                 await bot.send_audio(
                     update.message.chat.id,
@@ -257,7 +258,7 @@ async def doc(bot, update):
                     thumb=ph_path,
                     duration=duration,
                     progress=progress_for_pyrogram,
-                    progress_args=("⚠️ __**Please wait...**__\n\n🌨️ **Uᴩʟᴏᴅ Sᴛᴀʀᴛᴇᴅ....**", ms, time.time()))
+                    progress_args=("⚠️ __**Pʟᴇᴀsᴇ Wᴀɪᴛ...**__\n\n**Uᴩʟᴏᴅ Sᴛᴀʀᴛᴇᴅ....**", ms, time.time()))
         except Exception as e:
             os.remove(file_path)
             if ph_path:
@@ -276,3 +277,4 @@ async def doc(bot, update):
         os.remove(file_path)
     if metadata_path:
         os.remove(metadata_path)
+          
