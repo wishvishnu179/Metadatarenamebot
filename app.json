@@ -73,9 +73,17 @@
     },
 
     "START_PIC": {
-      "description": "Your Bot start cmd PIC URL",
-      "value": "",
-      "required": false
-    }
-  }
+            "description": "Your Bot start cmd Pic from @MT_TelegraPH_Bot",
+            "value": "https://graph.org/file/77d2eddf9657a87acb881.jpg",
+            "required": false
+        }
+    },
+    "buildpacks": [
+        {
+            "url": "heroku/python"
+        },
+        {
+            "url": "https://github.com/jonathanong/heroku-buildpack-ffmpeg-latest"
+        }
+    ]
 }
