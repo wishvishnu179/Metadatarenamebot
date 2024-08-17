@@ -12,6 +12,9 @@ import asyncio
 from plugins.web_support import web_server
 from plugins.file_rename import app
 import pyromod
+import pyrogram.utils
+
+pyrogram.utils.MIN_CHANNEL_ID = -1001996186113
 
 logging.config.fileConfig('logging.conf')
 logging.getLogger().setLevel(logging.INFO)
